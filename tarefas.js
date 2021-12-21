@@ -38,7 +38,6 @@ let botaoNovaTarefa = document.querySelector('#incluir-nova-tarefa');
 botaoNovaTarefa.addEventListener('click', function(e) {
 	let inputNome = document.querySelector('#nova-tarefa-nome');
 	let inputCategoria = document.querySelector('#nova-tarefa-categoria');
-	let listaTarefas = document.querySelector('#lista-tarefas');
 
 	/* Para evitar que uma tarefa vazia seja inserida */
 	if(inputNome.value === ''){
@@ -51,4 +50,18 @@ botaoNovaTarefa.addEventListener('click', function(e) {
 	novaTarefa.adicionaNaPagina(listaTarefas);
 	inputNome.value = '';
 	inputNome.focus();
+});
+
+/* Opcional 3 */
+const filtroCategoria = document.querySelector('#filtro-de-categoria');
+
+filtroCategoria.addEventListener('change', function(e) {
+	let tarefasArray = document.querySelectorAll('.item-tarefa');
+	/* Remove a classe de todas as tarefas e adiciona apenas quando há uma categoria selecionada */
+	for(let tarefa of tarefasArray){
+		tarefa.classList.remove('retido-no-filtro'); 
+		if(filtroCategoria.value !== '' && !tarefa.classList.contains('categoria-'+filtroCategoria.value)){
+			tarefa.classList.add('retido-no-filtro');
+		}
+	}
 });
