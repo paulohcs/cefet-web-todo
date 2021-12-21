@@ -36,6 +36,10 @@ for(let tarefa of tarefas){
 /* Exerício 2 */
 let botaoNovaTarefa = document.querySelector('#incluir-nova-tarefa');
 botaoNovaTarefa.addEventListener('click', function(e) {
+	criaNovaTarefa();
+});
+
+function criaNovaTarefa(){
 	let inputNome = document.querySelector('#nova-tarefa-nome');
 	let inputCategoria = document.querySelector('#nova-tarefa-categoria');
 
@@ -50,7 +54,7 @@ botaoNovaTarefa.addEventListener('click', function(e) {
 	novaTarefa.adicionaNaPagina(listaTarefas);
 	inputNome.value = '';
 	inputNome.focus();
-});
+}
 
 /* Opcional 3 */
 const filtroCategoria = document.querySelector('#filtro-de-categoria');
@@ -63,5 +67,14 @@ filtroCategoria.addEventListener('change', function(e) {
 		if(filtroCategoria.value !== '' && !tarefa.classList.contains('categoria-'+filtroCategoria.value)){
 			tarefa.classList.add('retido-no-filtro');
 		}
+	}
+});
+
+/* Opcional 4 */
+let inputNome = document.querySelector('#nova-tarefa-nome');
+
+inputNome.addEventListener('keyup', function(e) {
+	if(e.key === 'Enter'){
+		criaNovaTarefa();
 	}
 });
