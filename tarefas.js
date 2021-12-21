@@ -58,9 +58,9 @@ function criaNovaTarefa(){
 
 /* Opcional 3 */
 const filtroCategoria = document.querySelector('#filtro-de-categoria');
+const tarefasArray = document.querySelectorAll('.item-tarefa');
 
 filtroCategoria.addEventListener('change', function(e) {
-	let tarefasArray = document.querySelectorAll('.item-tarefa');
 	/* Remove a classe de todas as tarefas e adiciona apenas quando há uma categoria selecionada */
 	for(let tarefa of tarefasArray){
 		tarefa.classList.remove('retido-no-filtro'); 
@@ -78,3 +78,19 @@ inputNome.addEventListener('keyup', function(e) {
 		criaNovaTarefa();
 	}
 });
+
+/* Opcional 5 */
+function marcaTarefaConcluida(tarefa){
+	tarefa.addEventListener('click', function(e){
+		tarefa.classList.toggle('marcado');
+		for(let tarefaItem of tarefas){
+			if(tarefaItem.nome === tarefa.innerHTML){
+				tarefaItem.realizada = !tarefa.realizada;
+			}
+		}
+	});
+}
+
+for(let tarefa of tarefasArray){
+	marcaTarefaConcluida(tarefa);
+}
